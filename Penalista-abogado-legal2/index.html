@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Cejas Ale Nazareno | Abogado Penalista</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Lato', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* --- GLASSMORPHISM --- */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- GOLD THEME --- */
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gold-bg {
+            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+        }
+        
+        .text-gold {
+            color: #d4af37;
+        }
+
+        /* --- REVIEWS MARQUEE --- */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 120s linear infinite;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- ADMIN MONITOR STYLES --- */
+        .monitor-grid {
+            background-image: linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .scan-line {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 0, 0.3);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(300px); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-gray-200 antialiased overflow-x-hidden">
+
+    <!-- ================= CLIENT VIEW ================= -->
+    <div id="clientView">
+        <!-- Navbar -->
+        <nav class="fixed w-full z-40 glass-panel border-b border-white/10 bg-slate-950/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <div class="flex-shrink-0 flex items-center gap-3">
+                        <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center border border-[#d4af37]">
+                            <i class="fas fa-scale-balanced text-[#d4af37]"></i>
+                        </div>
+                        <span class="serif font-bold text-xl tracking-wider text-white hidden sm:block">DR. CEJAS ALE NAZARENO</span>
+                        <span class="serif font-bold text-xl tracking-wider text-white sm:hidden">DR. CEJAS</span>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="hidden md:block">
+                            <div class="flex items-baseline space-x-8">
+                                <a href="#home" class="hover:text-[#d4af37] transition px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+                                <a href="#services" class="hover:text-[#d4af37] transition px-3 py-2 rounded-md text-sm font-medium">Especialidades</a>
+                                <a href="#reviews" class="hover:text-[#d4af37] transition px-3 py-2 rounded-md text-sm font-medium">Opiniones</a>
+                                <a href="#contact" class="hover:text-[#d4af37] transition px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
+                            </div>
+                        </div>
+                        <!-- Private Access Button -->
+                        <button onclick="toggleAdminView()" class="text-gray-600 hover:text-[#d4af37] transition" title="Acceso Privado">
+                            <i class="fas fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-20"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/90 to-slate-950/40"></div>
+            
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in mt-10">
+                <a href="#reviews" class="mb-8 inline-flex items-center bg-[#d4af37]/10 border border-[#d4af37] rounded-full px-5 py-2 text-[#d4af37] text-sm font-semibold uppercase tracking-widest hover:bg-[#d4af37]/20 transition cursor-pointer group">
+                    <i class="fas fa-star mr-2 group-hover:text-yellow-300"></i> 5.0 en Reseñas Google Maps
+                </a>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    Justicia y <span class="gold-gradient">Excelencia</span> <br> Penal
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 font-light max-w-3xl mx-auto leading-relaxed">
+                    Magíster en Derecho Penal. Defensa estratégica en pleitos federales, delitos graves y causas complejas.
+                    <span class="block mt-2 text-sm text-[#d4af37] font-mono">T°VIII F°171 CAD - T°151 F° 144 CPACF</span>
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#contact" class="w-full sm:w-auto gold-bg text-slate-900 px-8 py-4 rounded shadow-lg font-bold tracking-wide hover:scale-105 transition transform">
+                        INICIAR CONSULTA
+                    </a>
+                    <a href="https://instagram.com/abogado_drcejas" target="_blank" class="w-full sm:w-auto border border-pink-500/50 glass-panel text-white px-8 py-4 rounded hover:bg-pink-900/20 transition flex items-center justify-center gap-2">
+                        <i class="fab fa-instagram text-pink-500"></i> @abogado_drcejas
+                    </a>
+                    <!-- Botón adicional solicitado -->
+                    <a href="https://wa.me/5491134691074" target="_blank" class="w-full sm:w-auto border border-[#25D366]/50 glass-panel text-white px-8 py-4 rounded hover:bg-[#25D366]/20 transition flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-[#25D366]"></i> 11 3469-1074
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div id="services" class="py-24 bg-slate-900 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 serif text-white">Especialidades Jurídicas</h2>
+                    <div class="w-24 h-1 bg-[#d4af37] mx-auto"></div>
+                    <p class="mt-4 text-gray-400">Equipo profesional especializado con cobertura en CABA, Conurbano y Zona Atlántico.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Penal Detailed -->
+                    <div class="bg-slate-800/50 p-8 rounded-xl border border-[#d4af37]/20 hover:border-[#d4af37] transition duration-300 group md:col-span-2">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded bg-slate-900 group-hover:bg-[#d4af37] flex items-center justify-center text-[#d4af37] group-hover:text-slate-900 transition text-2xl">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white serif">Derecho Penal & Delitos</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-8 text-gray-300 text-sm">
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Pleitos de defensa penal general</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Pleitos de defensa penal federal</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Delitos graves</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Delitos sexuales</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Delitos menores y faltas</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Habeas Corpus</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Traslados a unidades cercanas</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Evasión tributaria (Simple/Agravada)</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Lavado de activos</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Contrabando (Simple/Agravado)</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Delitos contra persona jurídica</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Preparación de Juicios Orales</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Contravenciones</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-[#d4af37]"></i> Asesoría legal personalizada</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Accidentes -->
+                    <div class="bg-slate-800/50 p-8 rounded-xl border border-white/5 hover:border-[#d4af37]/50 transition duration-300 group md:col-span-2">
+                        <div class="w-14 h-14 rounded bg-slate-900 group-hover:bg-[#d4af37] flex items-center justify-center text-[#d4af37] group-hover:text-slate-900 transition mb-6 text-2xl">
+                            <i class="fas fa-car-crash"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 serif">Accidentes & Daños</h3>
+                        <p class="text-gray-400 leading-relaxed text-sm">Reclamos por accidentes de tránsito, lesiones y daños y perjuicios. Obtenga la indemnización que corresponde con representación experta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Reviews Marquee Section -->
+        <div id="reviews" class="py-16 bg-slate-950 border-y border-white/5 overflow-hidden relative">
+            <div class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-white mb-2"><i class="fab fa-google text-blue-500 mr-2"></i>Reseñas Destacadas</h3>
+                <p class="text-gray-500 text-sm">Opiniones reales verificadas en Google Maps</p>
+            </div>
+            
+            <div class="marquee-container">
+                <div class="marquee-content" id="reviewsContainer">
+                    <!-- JS will populate this to ensure duplication for loop -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Location & Info Strip -->
+        <div class="bg-slate-800 py-12">
+            <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-around gap-8 text-center md:text-left">
+                <div class="flex items-center gap-4 justify-center md:justify-start">
+                    <div class="w-12 h-12 rounded-full bg-[#d4af37]/20 flex items-center justify-center text-[#d4af37] text-xl">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">Cobertura</h4>
+                        <p class="text-gray-400 text-sm">CABA, Conurbano y Zona Atlántico</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 justify-center md:justify-start">
+                    <div class="w-12 h-12 rounded-full bg-[#d4af37]/20 flex items-center justify-center text-[#d4af37] text-xl">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">Dr. Nazareno J. Cejas Ale</h4>
+                        <p class="text-gray-400 text-xs max-w-xs">T°VIII F°171 CAD - T°151 F° 144 CPACF<br>Magister en Derecho Penal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div id="contact" class="py-24 relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 relative z-10">
+                <div class="glass-panel rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10">
+                    <div class="text-center mb-10">
+                        <h2 class="text-3xl font-bold serif mb-2">Inicie su Consulta</h2>
+                        <p class="text-gray-400">Complete el formulario para una evaluación preliminar de su caso.</p>
+                    </div>
+
+                    <form id="clientForm" onsubmit="handleClientSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1">Nombre Completo</label>
+                                <input type="text" required name="name" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white focus:border-[#d4af37] focus:outline-none focus:ring-1 focus:ring-[#d4af37] transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1">Teléfono</label>
+                                <input type="tel" required name="phone" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white focus:border-[#d4af37] focus:outline-none transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Email (Opcional)</label>
+                            <input type="email" name="email" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white focus:border-[#d4af37] focus:outline-none transition">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1">Tipo de Caso</label>
+                                <select name="type" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white focus:border-[#d4af37] focus:outline-none transition">
+                                    <option>Derecho Penal</option>
+                                    <option>Accidentes</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1">Adjuntar Archivo</label>
+                                <div class="relative">
+                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="this.nextElementSibling.innerText = this.files[0].name">
+                                    <div class="w-full bg-slate-950 border border-dashed border-slate-600 rounded p-3 text-center text-gray-500 hover:bg-slate-800 transition cursor-pointer truncate">
+                                        <i class="fas fa-paperclip mr-2"></i> Seleccionar archivo
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Descripción del Caso</label>
+                            <textarea name="desc" required rows="4" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white focus:border-[#d4af37] focus:outline-none transition"></textarea>
+                        </div>
+
+                        <div id="formActions" class="pt-4">
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700 text-white font-bold py-4 rounded shadow-lg transform transition hover:-translate-y-1">
+                                ENVIAR CONSULTA
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="successMessage" class="hidden text-center space-y-6 pt-6 animate-fade-in">
+                        <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto text-2xl">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">¡Consulta Recibida!</h3>
+                        <p class="text-gray-300">Hemos registrado su caso exitosamente en nuestro sistema seguro.</p>
+                        <a href="https://wa.me/5491134691074?text=Hola,%20acabo%20de%20enviar%20un%20formulario%20web." target="_blank" class="block w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 rounded shadow-lg transition flex items-center justify-center gap-2 animate-bounce">
+                            <i class="fab fa-whatsapp text-2xl"></i> CONTINUAR POR WHATSAPP
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="bg-black py-8 text-center text-gray-600 text-sm">
+            <p class="serif text-gray-500 mb-2">Dr. Nazareno J. Cejas Ale - Abogado Penalista</p>
+            <p>&copy; 2023 Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- ================= ADMIN VIEW (Hidden) ================= -->
+    <div id="adminView" class="hidden fixed inset-0 z-50 bg-slate-950 overflow-y-auto">
+        
+        <!-- Login Section -->
+        <div id="adminLogin" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 monitor-grid opacity-20"></div>
+            <div class="absolute top-4 right-4">
+                <button onclick="toggleAdminView()" class="text-gray-500 hover:text-white"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            <div class="glass-panel p-10 rounded-xl shadow-2xl max-w-md w-full z-10 border border-slate-700 relative">
+                <div class="text-center mb-8">
+                    <i class="fas fa-shield-halved text-4xl text-[#d4af37] mb-4"></i>
+                    <h2 class="text-2xl font-bold text-white serif">Acceso Penalistas</h2>
+                    <p class="text-gray-500 text-sm mt-2">Sistema de Gestión Privado</p>
+                </div>
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <div id="loginError" class="hidden bg-red-900/30 text-red-400 p-3 rounded text-sm text-center border border-red-900">
+                        Credenciales incorrectas
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-xs uppercase tracking-wider mb-2">Usuario</label>
+                        <input type="text" id="user" class="w-full bg-slate-900 border border-slate-700 text-white p-3 rounded focus:border-[#d4af37] outline-none font-mono" placeholder="Usuario">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-xs uppercase tracking-wider mb-2">Contraseña</label>
+                        <input type="password" id="pass" class="w-full bg-slate-900 border border-slate-700 text-white p-3 rounded focus:border-[#d4af37] outline-none font-mono" placeholder="••••••">
+                    </div>
+                    <button type="submit" class="w-full gold-bg text-slate-900 font-bold py-3 rounded mt-4 hover:brightness-110 transition">INGRESAR AL SISTEMA</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard Section (Hidden until logged in) -->
+        <div id="adminDashboard" class="hidden min-h-screen flex flex-col">
+            <!-- Top Bar -->
+            <header class="h-20 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4 md:px-8 sticky top-0 z-20">
+                <div class="flex items-center gap-4 text-gray-400">
+                    <button onclick="toggleAdminView()" class="md:hidden text-white"><i class="fas fa-arrow-left"></i></button>
+                    <span class="text-sm hidden md:inline"><i class="fas fa-server text-green-500 mr-2"></i>Sistema Online</span>
+                    <span class="text-slate-600 hidden md:inline">|</span>
+                    <span class="text-sm font-mono text-[#d4af37]" id="clock">00:00:00</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-white font-bold text-sm">Dr. Cejas</p>
+                        <p class="text-xs text-[#d4af37]">Administrador</p>
+                    </div>
+                    <button onclick="logout()" class="text-red-400 hover:text-red-300 ml-4" title="Cerrar Sesión">
+                        <i class="fas fa-sign-out-alt text-xl"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="flex-1 p-4 md:p-8 overflow-y-auto">
+                 <!-- Network Monitor Widget -->
+                 <div class="mb-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 bg-slate-900 rounded-xl border border-slate-800 p-6 relative overflow-hidden">
+                        <div class="flex justify-between items-center mb-6 relative z-10">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fas fa-network-wired text-blue-500"></i> Monitor de Red (En Vivo)
+                            </h3>
+                            <span class="text-xs bg-green-900/30 text-green-400 px-2 py-1 rounded border border-green-900 animate-pulse">Monitoreando</span>
+                        </div>
+                        <div class="monitor-grid h-48 rounded border border-slate-800 relative bg-black/40 font-mono text-xs p-4 overflow-hidden">
+                            <div class="scan-line absolute top-0 left-0 z-10"></div>
+                            <div id="networkLogs" class="space-y-1 text-green-500/80 overflow-y-auto h-full pb-4 scrollbar-hide">
+                                <!-- Logs injected via JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-6 flex flex-col justify-center items-center text-center">
+                        <div class="w-32 h-32 rounded-full border-8 border-slate-800 flex items-center justify-center relative mb-4">
+                            <svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#d4af37" stroke-width="8" stroke-dasharray="251.2" stroke-dashoffset="60" />
+                            </svg>
+                            <div>
+                                <span class="text-3xl font-bold text-white" id="totalCasesDisplay">0</span>
+                                <p class="text-xs text-gray-500">Total</p>
+                            </div>
+                        </div>
+                        <h4 class="text-white font-bold">Estado de Casos</h4>
+                        <div class="mt-4 w-full grid grid-cols-3 gap-2 text-xs" id="statsContainer">
+                            <!-- Stats injected -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cases Table -->
+                <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+                    <div class="p-6 border-b border-slate-800 flex justify-between items-center flex-wrap gap-4">
+                        <h3 class="text-lg font-bold text-white">Gestión de Casos</h3>
+                        <button onclick="exportData()" class="text-sm bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded transition border border-green-600">
+                            <i class="fas fa-file-excel mr-2"></i> Descargar Excel (.xls)
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-400">
+                            <thead class="bg-slate-950 text-xs uppercase text-gray-500">
+                                <tr>
+                                    <th class="px-6 py-4">Cliente</th>
+                                    <th class="px-6 py-4">Caso</th>
+                                    <th class="px-6 py-4">Estado</th>
+                                    <th class="px-6 py-4">Nivel</th>
+                                    <th class="px-6 py-4">Progreso</th>
+                                    <th class="px-6 py-4 text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800" id="casesTableBody">
+                                <!-- Cases injected -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div id="editModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+            <div class="bg-slate-900 border border-slate-700 w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+                <div class="p-6 border-b border-slate-700 flex justify-between items-center bg-slate-950">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-folder-open text-[#d4af37] text-xl"></i>
+                        <h3 class="text-xl font-bold text-white">Expediente Digital</h3>
+                    </div>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <div id="modalContent" class="p-6 overflow-y-auto">
+                    <!-- Content injected via JS -->
+                </div>
+                <div class="p-6 border-t border-slate-700 bg-slate-950 flex justify-end gap-3">
+                    <button onclick="closeModal()" class="px-4 py-2 rounded text-gray-400 hover:bg-slate-800">Cancelar</button>
+                    <button onclick="saveCaseChanges()" class="px-6 py-2 rounded gold-bg text-slate-900 font-bold hover:brightness-110">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // --- REVIEWS DATA ---
+        const reviews = [
+            { name: "Vilma Flores", text: "Excelente profesionalismo y dedicación. Demostró una gran capacidad para entender mi caso y encontrar la mejor solución. Su experiencia es impresionante.", stars: 5 },
+            { name: "Alejandra Gorosito", text: "Excelente profesional. Nos acompañó del día uno y nos dio una gran contención a toda la familia.", stars: 5 },
+            { name: "Cayetano Matoso", text: "Excelente profesional y un gran ser humano, nos acompañó siempre.", stars: 5 },
+            { name: "Priscilla Solange", text: "Gracias Dr. Cejas por su compromiso profesional; quiero destacar su empatía y honestidad. Muy recomendable!", stars: 5 },
+            { name: "Damaris Cardozo", text: "Buena atención, muy recomendable. El doctor Cejas es un excelente abogado, siempre obtiene buenos resultados.", stars: 5 },
+            { name: "Nadia Salas", text: "Excelente profesional. Resolvió lo que otros me decían que era imposible. Y resolvió en corto plazo.", stars: 5 },
+            { name: "Luciano Molina", text: "Profesionales eficientes y sobre todo, comprometidos con la causa!", stars: 5 },
+            { name: "Germania Pizanan", text: "Destaco su profesionalismo y compromiso, ya que supo responder con claridad a mis inquietudes.", stars: 5 },
+            { name: "Gladys Negri", text: "Excelente profesional supo ayudarme a resolver un problema y no se aprovechó con lo cobrado.", stars: 5 },
+            { name: "Gerson Gabriel", text: "Excelente abogado !!", stars: 5 },
+            { name: "Vanne Ayala", text: "Excelente", stars: 5 }
+        ];
+
+        // --- SHARED DATABASE KEY ---
+        const DB_KEY = 'legal_cms_data_v2';
+        const AUTH_USER = "Drcejas@@##";
+        const AUTH_PASS = "Penalista##@@";
+
+        const initialState = {
+            cases: [
+                {
+                    id: '1715623',
+                    name: 'Ejemplo: Juan Pérez',
+                    email: 'juan@ejemplo.com',
+                    phone: '11 5555-5555',
+                    type: 'Derecho Penal',
+                    desc: 'Caso de prueba inicial para el sistema.',
+                    status: 'in_process',
+                    execution: 'reviewing',
+                    level: 'medium',
+                    progress: 45,
+                    date: new Date().toLocaleDateString()
+                }
+            ],
+            logs: [] 
+        };
+
+        // --- DATA MANAGEMENT ---
+        function loadData() {
+            const stored = localStorage.getItem(DB_KEY);
+            if (!stored) {
+                localStorage.setItem(DB_KEY, JSON.stringify(initialState));
+                return initialState;
+            }
+            const data = JSON.parse(stored);
+            if(!data.logs) data.logs = [];
+            return data;
+        }
+
+        function saveData(data) {
+            localStorage.setItem(DB_KEY, JSON.stringify(data));
+        }
+
+        // --- REAL TIME LOGGING ---
+        async function logAccess(action = "Visita Web", detail = "") {
+            try {
+                let ip = 'IP Oculta';
+                try {
+                    const res = await fetch('https://api.ipify.org?format=json');
+                    const data = await res.json();
+                    ip = data.ip;
+                } catch(e) {}
+
+                const ua = navigator.userAgent;
+                let device = "Escritorio";
+                if(ua.includes("Mobile") || ua.includes("Android") || ua.includes("iPhone")) device = "Móvil";
+
+                const newLog = {
+                    timestamp: Date.now(),
+                    timeString: new Date().toLocaleTimeString(),
+                    ip: ip,
+                    device: device,
+                    action: action,
+                    detail: detail
+                };
+
+                const appData = loadData();
+                if(appData.logs.length > 50) appData.logs.shift(); 
+                appData.logs.push(newLog);
+                saveData(appData);
+
+            } catch (error) {
+                console.error("Logging error", error);
+            }
+        }
+
+        // --- CLIENT FORM ---
+        function handleClientSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const appData = loadData();
+            const name = formData.get('name');
+
+            const newCase = {
+                id: Date.now().toString().slice(-6),
+                name: name,
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                type: formData.get('type'),
+                desc: formData.get('desc'),
+                status: 'pending',
+                execution: 'started',
+                level: 'mild',
+                progress: 0,
+                date: new Date().toLocaleDateString()
+            };
+
+            appData.cases.push(newCase);
+            saveData(appData);
+            logAccess("Nuevo Caso", `Cliente: ${name}`);
+
+            document.getElementById('clientForm').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+        }
+
+        // --- VIEW TOGGLE ---
+        function toggleAdminView() {
+            const adminView = document.getElementById('adminView');
+            const clientView = document.getElementById('clientView');
+            
+            if (adminView.classList.contains('hidden')) {
+                adminView.classList.remove('hidden');
+                clientView.classList.add('hidden');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                adminView.classList.add('hidden');
+                clientView.classList.remove('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        // --- AUTH ---
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('user').value;
+            const pass = document.getElementById('pass').value;
+            
+            if (user === AUTH_USER && pass === AUTH_PASS) {
+                document.getElementById('adminLogin').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                renderDashboard();
+                startNetworkMonitor();
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function logout() {
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('adminLogin').classList.remove('hidden');
+            document.getElementById('user').value = '';
+            document.getElementById('pass').value = '';
+        }
+
+        // --- DASHBOARD ---
+        let currentEditingIndex = null;
+
+        function renderDashboard() {
+            const appData = loadData();
+            
+            document.getElementById('totalCasesDisplay').innerText = appData.cases.length;
+            document.getElementById('statsContainer').innerHTML = `
+                <div class="bg-red-900/20 p-2 rounded border border-red-900/30 text-red-400">
+                    ${appData.cases.filter(c => c.level === 'grave').length} Graves
+                </div>
+                <div class="bg-yellow-900/20 p-2 rounded border border-yellow-900/30 text-yellow-400">
+                    ${appData.cases.filter(c => c.level === 'medium').length} Medio
+                </div>
+                <div class="bg-blue-900/20 p-2 rounded border border-blue-900/30 text-blue-400">
+                    ${appData.cases.filter(c => c.level === 'mild').length} Leves
+                </div>
+            `;
+
+            const tbody = document.getElementById('casesTableBody');
+            if (appData.cases.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-gray-600">No hay casos registrados aún.</td></tr>';
+            } else {
+                tbody.innerHTML = appData.cases.map((c, index) => `
+                    <tr class="hover:bg-slate-800/50 transition cursor-pointer" onclick="openCaseModal(${index})">
+                        <td class="px-6 py-4">
+                            <div class="font-bold text-white">${c.name}</div>
+                            <div class="text-xs">${c.phone}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 rounded bg-slate-800 text-white text-xs border border-slate-700">${c.type}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            ${getStatusBadge(c.status)}
+                        </td>
+                        <td class="px-6 py-4">
+                            ${getLevelBadge(c.level)}
+                        </td>
+                        <td class="px-6 py-4 w-32">
+                            <div class="w-full bg-slate-800 rounded-full h-1.5 mb-1">
+                                <div class="bg-[#d4af37] h-1.5 rounded-full" style="width: ${c.progress}%"></div>
+                            </div>
+                            <span class="text-xs">${c.progress}%</span>
+                        </td>
+                        <td class="px-6 py-4 text-right flex gap-3 justify-end">
+                            <button class="text-blue-400 hover:text-white" title="Editar"><i class="fas fa-edit"></i></button>
+                            <button onclick="deleteCase(${index}); event.stopPropagation()" class="text-red-500 hover:text-red-300" title="Eliminar Caso"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+            
+            startClock();
+        }
+
+        function startNetworkMonitor() {
+            const logsContainer = document.getElementById('networkLogs');
+            
+            const refreshLogs = () => {
+                const currentData = loadData();
+                const logs = currentData.logs.sort((a, b) => b.timestamp - a.timestamp);
+                
+                let html = '';
+                logs.forEach(log => {
+                    let colorClass = 'text-green-500/80';
+                    if(log.action === 'Nuevo Caso') colorClass = 'text-[#d4af37] font-bold';
+                    
+                    html += `
+                        <div class="flex justify-between font-mono text-[10px] opacity-90 animate-fade-in border-b border-white/5 py-1">
+                            <span class="${colorClass}">> ${log.action}</span> 
+                            <span class="text-gray-500 text-right">
+                                ${log.ip} | ${log.device}
+                            </span>
+                        </div>
+                    `;
+                });
+                
+                if(logs.length === 0) html = '<div class="text-gray-500 italic">Esperando tráfico...</div>';
+                logsContainer.innerHTML = html;
+            };
+
+            refreshLogs();
+            if(window.logInterval) clearInterval(window.logInterval);
+            window.logInterval = setInterval(refreshLogs, 3000);
+        }
+
+        function openCaseModal(index) {
+            currentEditingIndex = index;
+            const appData = loadData();
+            const c = appData.cases[index];
+            const modal = document.getElementById('editModal');
+            const content = document.getElementById('modalContent');
+            
+            modal.classList.remove('hidden');
+            
+            content.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Left Column: Details -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="flex items-start gap-4 p-4 bg-slate-800/50 rounded-lg border border-white/5">
+                            <div class="w-12 h-12 rounded-full bg-blue-900/20 text-blue-400 flex items-center justify-center text-xl">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">${c.name}</h4>
+                                <p class="text-sm text-gray-400"><i class="fas fa-phone mr-2"></i>${c.phone}</p>
+                                <p class="text-sm text-gray-400"><i class="fas fa-envelope mr-2"></i>${c.email || 'Sin email'}</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs uppercase tracking-wider text-gray-500 block mb-2 font-bold">Descripción del Hecho</label>
+                            <div class="bg-slate-950 p-6 rounded-lg border border-slate-700 shadow-inner min-h-[200px] text-lg text-gray-200 leading-relaxed whitespace-pre-wrap font-light">
+                                ${c.desc}
+                            </div>
+                        </div>
+
+                        <div>
+                             <label class="text-xs uppercase tracking-wider text-gray-500 block mb-2 font-bold">Archivos Adjuntos</label>
+                             <div class="flex items-center p-4 bg-slate-800 rounded border border-slate-700 hover:border-[#d4af37]/50 transition cursor-pointer">
+                                <i class="fas fa-file-pdf text-red-400 text-2xl mr-4"></i>
+                                <div>
+                                    <div class="text-white font-medium">Documentacion_Caso_${c.id}.pdf</div>
+                                    <div class="text-xs text-gray-500">Subido por cliente el ${c.date}</div>
+                                </div>
+                                <button class="ml-auto text-gray-400 hover:text-white"><i class="fas fa-download"></i></button>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Controls -->
+                    <div class="bg-slate-800/30 p-6 rounded-xl border border-white/5 space-y-6 h-fit">
+                        <h3 class="text-[#d4af37] font-bold text-sm uppercase border-b border-white/10 pb-2 mb-4">Panel de Control</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-400 text-xs mb-1">Estado</label>
+                                <select id="editStatus" class="w-full bg-slate-900 border border-slate-600 text-white rounded p-2 focus:border-[#d4af37] outline-none">
+                                    <option value="pending" ${c.status === 'pending' ? 'selected' : ''}>Pendiente</option>
+                                    <option value="in_process" ${c.status === 'in_process' ? 'selected' : ''}>En Proceso</option>
+                                    <option value="resolved" ${c.status === 'resolved' ? 'selected' : ''}>Resuelto</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-xs mb-1">Ejecución</label>
+                                <select id="editExec" class="w-full bg-slate-900 border border-slate-600 text-white rounded p-2 focus:border-[#d4af37] outline-none">
+                                    <option value="started" ${c.execution === 'started' ? 'selected' : ''}>Iniciado</option>
+                                    <option value="reviewing" ${c.execution === 'reviewing' ? 'selected' : ''}>En Revisión</option>
+                                    <option value="executing" ${c.execution === 'executing' ? 'selected' : ''}>Ejecutando</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-xs mb-1">Gravedad</label>
+                                <select id="editLevel" class="w-full bg-slate-900 border border-slate-600 text-white rounded p-2 focus:border-[#d4af37] outline-none">
+                                    <option value="mild" ${c.level === 'mild' ? 'selected' : ''}>Leve</option>
+                                    <option value="medium" ${c.level === 'medium' ? 'selected' : ''}>Medio</option>
+                                    <option value="grave" ${c.level === 'grave' ? 'selected' : ''}>Grave</option>
+                                </select>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <label class="block text-gray-400 text-xs">Progreso</label>
+                                    <span class="text-xs text-[#d4af37] font-bold" id="progressLabel">${c.progress}%</span>
+                                </div>
+                                <input type="range" id="editProgress" min="0" max="100" value="${c.progress}" 
+                                    class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#d4af37]" 
+                                    oninput="document.getElementById('progressLabel').innerText = this.value + '%'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').classList.add('hidden');
+            currentEditingIndex = null;
+        }
+
+        function saveCaseChanges() {
+            if (currentEditingIndex === null) return;
+            const appData = loadData();
+            const c = appData.cases[currentEditingIndex];
+            c.status = document.getElementById('editStatus').value;
+            c.execution = document.getElementById('editExec').value;
+            c.level = document.getElementById('editLevel').value;
+            c.progress = document.getElementById('editProgress').value;
+            saveData(appData);
+            closeModal();
+            renderDashboard();
+        }
+
+        function deleteCase(index) {
+            if(!confirm("¿Está seguro que desea ELIMINAR este caso permanentemente?")) return;
+            const appData = loadData();
+            const deletedName = appData.cases[index].name;
+            appData.cases.splice(index, 1);
+            saveData(appData);
+            logAccess("Caso Eliminado", `Admin borró: ${deletedName}`);
+            renderDashboard();
+        }
+
+        function exportData() {
+            const appData = loadData();
+            let tableHTML = `
+                <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+                <head><meta charset="UTF-8"></head>
+                <body>
+                <table border="1">
+                    <thead>
+                        <tr style="background-color: #d4af37; color: #000000; font-weight: bold;">
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Nivel</th>
+                            <th>Progreso</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            appData.cases.forEach(c => {
+                tableHTML += `
+                    <tr>
+                        <td>${c.id}</td>
+                        <td>${c.name}</td>
+                        <td>${c.phone}</td>
+                        <td>${c.email || '-'}</td>
+                        <td>${c.type}</td>
+                        <td>${c.desc}</td>
+                        <td>${c.status}</td>
+                        <td>${c.level}</td>
+                        <td>${c.progress}%</td>
+                        <td>${c.date}</td>
+                    </tr>
+                `;
+            });
+            tableHTML += '</tbody></table></body></html>';
+            
+            const blob = new Blob([tableHTML], { type: 'application/vnd.ms-excel' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Reporte_DrCejas_${new Date().toLocaleDateString().replace(/\//g, '-')}.xls`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function getStatusBadge(status) {
+            const map = {
+                'pending': '<span class="text-yellow-400 font-bold text-xs">• Pendiente</span>',
+                'in_process': '<span class="text-blue-400 font-bold text-xs">• En Proceso</span>',
+                'resolved': '<span class="text-green-400 font-bold text-xs">• Resuelto</span>'
+            };
+            return map[status] || status;
+        }
+
+        function getLevelBadge(level) {
+            const map = {
+                'mild': 'bg-blue-500/20 text-blue-300',
+                'medium': 'bg-yellow-500/20 text-yellow-300',
+                'grave': 'bg-red-500/20 text-red-300'
+            };
+            const text = level === 'mild' ? 'Leve' : level === 'medium' ? 'Medio' : 'Grave';
+            return `<span class="px-2 py-1 rounded text-xs font-bold border border-white/10 ${map[level]}">${text}</span>`;
+        }
+
+        function startClock() {
+            setInterval(() => {
+                const clock = document.getElementById('clock');
+                if(clock) clock.innerText = new Date().toLocaleTimeString();
+            }, 1000);
+        }
+
+        // --- INIT REVIEWS MARQUEE ---
+        function initReviews() {
+            const container = document.getElementById('reviewsContainer');
+            const createCard = (r) => `
+                <div class="inline-block w-80 bg-white p-4 rounded-lg shadow mx-4 whitespace-normal align-top">
+                    <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 bg-orange-500 rounded-full text-white flex items-center justify-center font-bold mr-3">
+                            ${r.name.charAt(0)}
+                        </div>
+                        <div>
+                            <div class="text-slate-900 font-bold text-sm">${r.name}</div>
+                            <div class="text-yellow-400 text-xs">
+                                ${'<i class="fas fa-star"></i>'.repeat(r.stars)}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-xs leading-relaxed line-clamp-4">"${r.text}"</p>
+                </div>
+            `;
+            
+            // Duplicate list multiple times for smooth infinite scroll
+            let html = '';
+            for(let i=0; i<4; i++) {
+                reviews.forEach(r => html += createCard(r));
+            }
+            container.innerHTML = html;
+        }
+
+        // --- MAIN INIT ---
+        logAccess("Visita Web", "Inicio");
+        initReviews();
+    </script>
+</body>
+</html>
